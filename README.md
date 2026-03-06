@@ -19,8 +19,8 @@ A minimal, clean writing site built with Next.js 14 (App Router), Tailwind CSS, 
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/writing-site.git
-cd writing-site
+git clone https://github.com/cupofwit/cupofwit-blog.git
+cd cupofwit-blog
 ```
 
 ### 2. Install dependencies
@@ -91,12 +91,9 @@ Each row is also a full Notion page — write the article body inside the page.
 ### 1. Push to GitHub
 
 ```bash
-git init
 git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/your-username/writing-site.git
-git push -u origin main
+git commit -m "your message"
+git push
 ```
 
 ### 2. Import the project on Vercel
