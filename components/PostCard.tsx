@@ -8,8 +8,7 @@ interface PostCardProps {
 function formatDate(dateStr: string | null): string {
   if (!dateStr) return '';
   return new Date(dateStr).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
+    month: 'short',
     day: 'numeric',
     timeZone: 'UTC',
   });
@@ -19,7 +18,7 @@ export default function PostCard({ post }: PostCardProps) {
   return (
     <Link
       href={`/writing/${post.slug}`}
-      className="group flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-4 border-b border-gray-100 last:border-0"
+      className="group flex items-baseline justify-between gap-4 py-3.5 border-b border-gray-100 last:border-0"
     >
       <span className="text-gray-900 group-hover:text-gray-500 transition-colors text-[15px] leading-snug">
         {post.title}
@@ -27,7 +26,7 @@ export default function PostCard({ post }: PostCardProps) {
       {post.publishDate && (
         <time
           dateTime={post.publishDate}
-          className="text-sm text-gray-400 shrink-0"
+          className="text-sm text-gray-400 shrink-0 tabular-nums"
         >
           {formatDate(post.publishDate)}
         </time>
