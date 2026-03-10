@@ -28,7 +28,7 @@ export default async function WritingPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
-      <h1 className="text-2xl font-semibold tracking-tight text-gray-900 mb-12 font-serif">
+      <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-gray-900 mb-12 font-serif">
         Writing
       </h1>
 

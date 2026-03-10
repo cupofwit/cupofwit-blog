@@ -55,8 +55,21 @@ export default async function PostPage({ params }: PageProps) {
 
   if (!post) notFound();
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    author: { '@type': 'Person', name: siteConfig.name },
+    datePublished: post.publishDate ?? undefined,
+    url: `${siteConfig.url}/writing/${post.slug}`,
+  };
+
   return (
     <article className="max-w-2xl mx-auto px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link
         href="/writing"
         className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 transition-colors mb-10"
