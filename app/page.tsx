@@ -1,9 +1,15 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getPublishedPosts } from '@/lib/notion';
+import siteConfig from '@/site.config';
 
 export const metadata: Metadata = {
-  title: 'Home',
+  title: { absolute: siteConfig.name },
+  description: siteConfig.description,
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.description,
+  },
 };
 
 export const revalidate = 60;
@@ -28,11 +34,10 @@ export default async function HomePage() {
       {/* Hero */}
       <section className="mb-16 pb-16 border-b border-gray-100">
         <h1 className="text-3xl font-semibold tracking-tight text-gray-900 mb-4 font-serif">
-          Your Name
+          {siteConfig.name}
         </h1>
         <p className="text-gray-600 leading-relaxed text-lg max-w-lg">
-          A few sentences about who you are, what you think about, and why you
-          write. Keep it honest and personal.
+          {siteConfig.tagline}
         </p>
       </section>
 

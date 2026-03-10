@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import siteConfig from '@/site.config';
 
 export default function Header() {
   const pathname = usePathname();
@@ -13,7 +14,7 @@ export default function Header() {
           href="/"
           className="text-sm font-semibold text-gray-900 tracking-tight hover:text-gray-500 transition-colors"
         >
-          Your Name
+          {siteConfig.name}
         </Link>
         <nav className="flex items-center gap-6">
           <Link
