@@ -4,6 +4,7 @@ import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { getPostBySlug, getPublishedPostSlugs } from '@/lib/notion';
+import siteConfig from '@/site.config';
 
 interface PageProps {
   params: { slug: string };
@@ -21,10 +22,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!post) return {};
   return {
     title: post.title,
+    description: siteConfig.description,
     openGraph: {
       title: post.title,
+      description: siteConfig.description,
       type: 'article',
       publishedTime: post.publishDate ?? undefined,
+      authors: [siteConfig.name],
+      siteName: siteConfig.name,
     },
   };
 }
@@ -37,6 +42,12 @@ function formatDate(dateStr: string | null): string {
     day: 'numeric',
     timeZone: 'UTC',
   });
+}
+
+function readingTime(markdown: string): string {
+  const words = markdown.trim().split(/\s+/).length;
+  const minutes = Math.max(1, Math.round(words / 200));
+  return `${minutes} min read`;
 }
 
 export default async function PostPage({ params }: PageProps) {
@@ -66,11 +77,17 @@ export default async function PostPage({ params }: PageProps) {
         <h1 className="text-3xl font-semibold tracking-tight text-gray-900 leading-tight mb-4 font-serif">
           {post.title}
         </h1>
-        {post.publishDate && (
-          <time dateTime={post.publishDate} className="text-sm text-gray-400">
-            {formatDate(post.publishDate)}
-          </time>
-        )}
+        <div className="flex items-center gap-3 text-sm text-gray-400">
+          {post.publishDate && (
+            <>
+              <time dateTime={post.publishDate}>
+                {formatDate(post.publishDate)}
+              </time>
+              <span aria-hidden="true">·</span>
+            </>
+          )}
+          <span>{readingTime(post.markdown)}</span>
+        </div>
       </header>
 
       <div className="prose prose-gray max-w-none">
