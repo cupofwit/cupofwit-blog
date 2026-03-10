@@ -20,7 +20,7 @@ export default function PostCard({ post }: PostCardProps) {
       href={`/writing/${post.slug}`}
       className="group flex items-baseline justify-between gap-4 py-3.5 border-b border-gray-100 last:border-0"
     >
-      <span className="text-gray-900 group-hover:text-gray-500 transition-colors text-[15px] leading-snug">
+      <span className="text-gray-800 group-hover:underline underline-offset-[3px] decoration-gray-300 text-[15px] leading-snug">
         {post.title}
       </span>
       {post.publishDate && (
