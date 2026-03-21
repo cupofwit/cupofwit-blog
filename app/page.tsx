@@ -59,6 +59,9 @@ export default async function HomePage() {
               <h3 className="text-xl font-semibold font-serif text-gray-900 leading-snug mb-2 group-hover:underline underline-offset-[3px] decoration-gray-300">
                 {featuredPost.title}
               </h3>
+              {featuredPost.excerpt && (
+                <p className="text-sm text-gray-500 mb-2 leading-relaxed">{featuredPost.excerpt}</p>
+              )}
               {featuredPost.publishDate && (
                 <time dateTime={featuredPost.publishDate} className="text-sm text-gray-400">
                   {formatDate(featuredPost.publishDate)}

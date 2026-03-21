@@ -36,6 +36,12 @@ function pageToPost(page: PageObjectResponse): Post {
       ? ((selectProp.select?.name ?? null) as Post['status'])
       : null;
 
+  const excerptProp = props['Excerpt'];
+  const excerpt =
+    excerptProp?.type === 'rich_text'
+      ? (excerptProp.rich_text[0]?.plain_text ?? null)
+      : null;
+
   return {
     id: page.id,
     slug: page.id,
@@ -43,6 +49,7 @@ function pageToPost(page: PageObjectResponse): Post {
     publishDate,
     url,
     status,
+    excerpt,
   };
 }
 

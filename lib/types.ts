@@ -5,6 +5,7 @@ export interface Post {
   publishDate: string | null; // ISO date string, e.g. "2024-01-15"
   url: string | null; // Optional external URL from the Notion URL field
   status: 'Draft' | 'Scheduled' | 'Unpublished' | 'Published' | null;
+  excerpt: string | null; // Optional short description from the Notion "Excerpt" property
 }
 
 export interface PostWithContent extends Post {

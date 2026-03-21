@@ -14,6 +14,7 @@ const siteConfig = {
     email: null as string | null,
   },
   copyrightName: null as string | null,
+  about: `A few paragraphs about yourself. Who you are, what you do, what you think about. Replace this with your own words.` as string | null,
 } as const;
 
 export default siteConfig;
