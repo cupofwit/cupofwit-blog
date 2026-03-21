@@ -3,9 +3,10 @@ import { NotionToMarkdown } from 'notion-to-md';
 import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import type { Post, PostWithContent } from './types';
 
-const notion = new Client({
-  auth: process.env.NOTION_API_KEY,
-});
+const apiKey = process.env.NOTION_API_KEY;
+if (!apiKey) throw new Error('NOTION_API_KEY is not set');
+
+const notion = new Client({ auth: apiKey });
 
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
@@ -92,7 +93,8 @@ export async function getPostBySlug(slug: string): Promise<PostWithContent | nul
       ...pageToPost(page),
       markdown,
     };
-  } catch {
+  } catch (err) {
+    console.error('[notion] getPostBySlug failed for slug:', slug, err);
     return null;
   }
 }
