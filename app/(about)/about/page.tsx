@@ -1,17 +1,29 @@
 import type { Metadata } from 'next';
+import siteConfig from '@/site.config';
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'About page coming soon.',
+  description: `About ${siteConfig.name}`,
 };
 
 export default function AboutPage() {
   return (
-    <div className="max-w-2xl mx-auto px-6 py-20 sm:py-32">
-      <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-gray-900 mb-6 font-serif leading-tight">
+    <div className="max-w-2xl mx-auto px-6 py-16">
+      <h1 className="text-2xl font-semibold tracking-tight text-gray-900 mb-10 font-serif">
         About
       </h1>
-      <p className="text-gray-500 leading-relaxed text-lg">Coming Soon</p>
+
+      {siteConfig.about ? (
+        <div className="prose prose-gray max-w-none">
+          {siteConfig.about.split('\n\n').map((para, i) => (
+            <p key={i} className="text-gray-600 leading-relaxed mb-4 last:mb-0">
+              {para}
+            </p>
+          ))}
+        </div>
+      ) : (
+        <p className="text-gray-400 text-sm">Nothing here yet.</p>
+      )}
     </div>
   );
 }

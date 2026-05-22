@@ -22,6 +22,14 @@ export default function Header() {
           >
             Writing
           </Link>
+          <Link
+            href="/about"
+            className={`text-sm transition-colors ${
+              pathname === '/about' ? 'text-gray-900 font-medium' : 'text-gray-500 hover:text-gray-900'
+            }`}
+          >
+            About
+          </Link>
         </nav>
       </div>
     </header>

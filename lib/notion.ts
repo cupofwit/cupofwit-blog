@@ -3,9 +3,10 @@ import { NotionToMarkdown } from 'notion-to-md';
 import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import type { Post, PostWithContent } from './types';
 
-const notion = new Client({
-  auth: process.env.NOTION_API_KEY,
-});
+const apiKey = process.env.NOTION_API_KEY;
+if (!apiKey) throw new Error('NOTION_API_KEY is not set');
+
+const notion = new Client({ auth: apiKey });
 
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
@@ -35,6 +36,12 @@ function pageToPost(page: PageObjectResponse): Post {
       ? ((selectProp.select?.name ?? null) as Post['status'])
       : null;
 
+  const excerptProp = props['Excerpt'];
+  const excerpt =
+    excerptProp?.type === 'rich_text'
+      ? (excerptProp.rich_text[0]?.plain_text ?? null)
+      : null;
+
   return {
     id: page.id,
     slug: page.id,
@@ -42,6 +49,7 @@ function pageToPost(page: PageObjectResponse): Post {
     publishDate,
     url,
     status,
+    excerpt,
   };
 }
 
@@ -92,7 +100,8 @@ export async function getPostBySlug(slug: string): Promise<PostWithContent | nul
       ...pageToPost(page),
       markdown,
     };
-  } catch {
+  } catch (err) {
+    console.error('[notion] getPostBySlug failed for slug:', slug, err);
     return null;
   }
 }
