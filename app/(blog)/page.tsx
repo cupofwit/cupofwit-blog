@@ -38,6 +38,15 @@ export default async function HomePage() {
         <p className="text-gray-500 leading-relaxed text-lg max-w-md">
           {siteConfig.tagline}
         </p>
+        <p className="text-sm text-gray-400 mt-6 mb-3">Published weekly. Free to read.</p>
+        <a
+          href="https://cupofwit.substack.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors"
+        >
+          Subscribe on Substack →
+        </a>
       </section>
 
       <section>
