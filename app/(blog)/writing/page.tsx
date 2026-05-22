@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { getPublishedPosts } from '@/lib/notion';
-import PostCard from '@/components/PostCard';
+import PostCard from '@/components/blog/PostCard';
 import type { Post } from '@/lib/types';
 
 export const metadata: Metadata = {
