@@ -30,6 +30,9 @@ export default function PostCard({ post }: PostCardProps) {
           </time>
         )}
       </div>
+      {post.subtitle && (
+        <p className="text-sm text-gray-400 mt-0.5 leading-snug font-normal">{post.subtitle}</p>
+      )}
       {post.excerpt && (
         <p className="text-sm text-gray-400 mt-0.5 leading-snug">{post.excerpt}</p>
       )}

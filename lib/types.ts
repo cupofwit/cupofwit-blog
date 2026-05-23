@@ -6,6 +6,7 @@ export interface Post {
   url: string | null; // Optional external URL from the Notion URL field
   status: 'Draft' | 'Scheduled' | 'Unpublished' | 'Published' | null;
   excerpt: string | null; // Optional short description from the Notion "Excerpt" property
+  subtitle?: string | null; // Optional subtitle from the Notion "Subtitle" property
 }
 
 export interface PostWithContent extends Post {
