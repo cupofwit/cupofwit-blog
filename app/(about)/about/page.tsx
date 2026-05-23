@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import ReactMarkdown from 'react-markdown';
 import siteConfig from '@/site.config';
 
 export const metadata: Metadata = {
@@ -17,7 +18,18 @@ export default function AboutPage() {
         <div className="prose prose-gray max-w-none">
           {siteConfig.about.split('\n\n').map((para, i) => (
             <p key={i} className="text-gray-600 leading-relaxed mb-4 last:mb-0">
-              {para}
+              <ReactMarkdown
+                components={{
+                  p: ({ children }) => <>{children}</>,
+                  a: ({ href, children }) => (
+                    <a href={href} target="_blank" rel="noopener noreferrer" className="text-amber-700 hover:text-amber-900 transition-colors">
+                      {children}
+                    </a>
+                  ),
+                }}
+              >
+                {para}
+              </ReactMarkdown>
             </p>
           ))}
         </div>
