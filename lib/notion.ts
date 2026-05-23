@@ -42,6 +42,12 @@ function pageToPost(page: PageObjectResponse): Post {
       ? (excerptProp.rich_text[0]?.plain_text ?? null)
       : null;
 
+  const subtitleProp = props['Subtitle'];
+  const subtitle =
+    subtitleProp?.type === 'rich_text'
+      ? (subtitleProp.rich_text[0]?.plain_text ?? null)
+      : null;
+
   return {
     id: page.id,
     slug: page.id,
@@ -50,6 +56,7 @@ function pageToPost(page: PageObjectResponse): Post {
     url,
     status,
     excerpt,
+    subtitle,
   };
 }
 
