@@ -110,8 +110,19 @@ export default function HomePage() {
               href={article.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block py-3.5 border-b border-gray-100 last:border-0"
+              className="group block py-5 border-b border-gray-100 last:border-0"
             >
+              <div className="mb-3 overflow-hidden rounded-lg">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/api/og?title=${encodeURIComponent(article.title)}`}
+                  alt=""
+                  width={1200}
+                  height={630}
+                  className="w-full h-48 object-cover object-left"
+                  loading="lazy"
+                />
+              </div>
               <div className="flex items-baseline justify-between gap-4">
                 <span className="text-gray-800 group-hover:underline underline-offset-[3px] decoration-gray-300 text-[15px] leading-snug">
                   {article.title}
