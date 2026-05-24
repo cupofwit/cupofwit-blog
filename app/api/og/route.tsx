@@ -19,18 +19,10 @@ function getGhostWord(title: string): string {
   return (significant ?? words[0] ?? 'AI').replace(/[^a-zA-Z]/g, '').toUpperCase();
 }
 
-function titleFontSize(title: string): number {
-  if (title.length > 80) return 40;
-  if (title.length > 60) return 48;
-  if (title.length > 40) return 56;
-  return 64;
-}
-
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const title = searchParams.get('title') ?? 'Cup of Wit';
   const ghostWord = getGhostWord(title);
-  const fontSize = titleFontSize(title);
 
   return new ImageResponse(
     (
@@ -101,35 +93,15 @@ export async function GET(request: NextRequest) {
           {/* Spacer pushes title to vertical centre */}
           <div style={{ flex: 1, display: 'flex' }} />
 
-          {/* Title + amber line */}
+          {/* Amber accent line */}
           <div
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              maxWidth: 700,
+              width: 56,
+              height: 5,
+              background: '#C2652A',
+              borderRadius: 3,
             }}
-          >
-            <div
-              style={{
-                fontSize,
-                fontWeight: 700,
-                color: '#1C2B4A',
-                lineHeight: 1.18,
-                fontFamily: 'serif',
-                marginBottom: 28,
-              }}
-            >
-              {title}
-            </div>
-            <div
-              style={{
-                width: 56,
-                height: 5,
-                background: '#C2652A',
-                borderRadius: 3,
-              }}
-            />
-          </div>
+          />
 
           {/* Spacer */}
           <div style={{ flex: 1, display: 'flex' }} />
